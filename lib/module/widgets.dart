@@ -28,7 +28,7 @@ class Button extends StatelessWidget {
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  icon!,
+                  Icon(icon!.icon, size: 17),
                   const SizedBox(
                     width: 5,
                   ),

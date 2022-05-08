@@ -4,6 +4,9 @@ import 'package:schoolmanagement/module/widgets.dart';
 extension ContextExtension on BuildContext {
   double get width => MediaQuery.of(this).size.width;
   double get height => MediaQuery.of(this).size.height;
+
+  void showForm(Widget child) =>
+      Navigator.push(this, MaterialPageRoute(builder: (context) => child));
 }
 
 extension StringExtesion on String {
@@ -55,4 +58,5 @@ extension WidgetExtesion on Widget {
 
   Widget get card => Card(child: this);
   Widget get expanded => Expanded(child: this);
+  Widget get center => Center(child: this);
 }
