@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'estension.dart';
 
 class Button extends StatelessWidget {
   final String title;
@@ -30,19 +31,35 @@ class Button extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Label(title: title)
+                  title.toLabel()
                 ],
               )
-            : Label(title: title));
+            : Label(
+                title: title,
+                bold: false,
+              ));
   }
 }
 
 class Label extends StatelessWidget {
   final String title;
-  const Label({required this.title, Key? key}) : super(key: key);
+  final double? fontSize;
+  final Color? color;
+  final bool bold;
+  const Label(
+      {required this.title,
+      required this.bold,
+      this.color,
+      this.fontSize,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(title);
+    return Text(title,
+        style: TextStyle(
+            fontSize: fontSize,
+            color: color,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal));
   }
 }
