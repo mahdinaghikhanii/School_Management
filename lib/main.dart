@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +30,7 @@ class HomeViews extends StatelessWidget {
           child: Column(
         children: [
           Container(
-            width: context.size.height * 0.20,
+            width: context.size!.height * 0.20,
           )
         ],
       )),
