@@ -64,3 +64,33 @@ class Label extends StatelessWidget {
             fontWeight: bold ? FontWeight.bold : FontWeight.normal));
   }
 }
+
+class Edit extends StatelessWidget {
+  final String hint;
+  final Function(String)? onChange;
+  final bool autoFocus;
+  final TextEditingController? controller;
+  final bool password;
+
+  const Edit(
+      {required this.hint,
+      required this.autoFocus,
+      required this.password,
+      this.controller,
+      this.onChange,
+      Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        controller: controller,
+        onChanged: onChange,
+        decoration: InputDecoration(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8), gapPadding: 20),
+            labelText: hint,
+            labelStyle: TextStyle(color: Colors.grey.shade400, fontSize: 16)),
+        obscureText: password);
+  }
+}

@@ -37,7 +37,15 @@ class HomeViews extends StatelessWidget {
             onTap: () {},
             padding: const EdgeInsets.all(22),
           ),
-          "saalam".toLabel()
+          "saalam".toLabel(),
+          Container(
+            color: Colors.black,
+          ).card.expanded,
+          Edit(
+              hint: "Username",
+              autoFocus: false,
+              password: true,
+              onChange: (val) => print(val)).padding9
         ],
       )),
     );
