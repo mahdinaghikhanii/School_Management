@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'estension.dart';
 
+enum ButtonType { save, news, delete, cancel, other }
+
 class Button extends StatelessWidget {
-  final String title;
+  final String? title;
   final VoidCallback onTap;
   final Icon? icon;
   final Color? color;
+  final ButtonType? type;
   final EdgeInsets? padding;
 
   const Button(
       {required this.title,
       required this.onTap,
+      this.type,
       this.color,
       this.icon,
       this.padding,
@@ -21,22 +25,43 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(color),
+            // ignore: prefer_if_null_operators
+            backgroundColor: MaterialStateProperty.all(color != null
+                ? color
+                : type == ButtonType.save
+                    ? Colors.green
+                    : type == ButtonType.cancel
+                        ? Colors.deepOrangeAccent
+                        : type == ButtonType.delete
+                            ? Colors.redAccent
+                            : type == ButtonType.news
+                                ? Colors.blue
+                                : Colors.transparent),
             padding: MaterialStateProperty.all(padding)),
         onPressed: onTap,
         child: icon != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(icon!.icon, size: 17),
+                  Icon(
+                      type == ButtonType.save
+                          ? Icons.save
+                          : type == ButtonType.cancel
+                              ? Icons.cancel
+                              : type == ButtonType.delete
+                                  ? Icons.delete
+                                  : type == ButtonType.news
+                                      ? Icons.new_label
+                                      : Icons.help_center,
+                      size: 17),
                   const SizedBox(
                     width: 5,
                   ),
-                  title.toLabel()
+                  '$title'.toLabel()
                 ],
               )
             : Label(
-                title: title,
+                title: '$title',
                 bold: false,
               ));
   }
