@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:schoolmanagement/module/widgets.dart';
+import 'module/estension.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,12 +8,11 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -29,9 +30,14 @@ class HomeViews extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          Container(
-            width: context.size!.height * 0.20,
-          )
+          Container(color: Colors.red, height: context.height * 0.20),
+          Button(
+            color: Colors.red,
+            title: "Clicl me",
+            onTap: () {},
+            padding: const EdgeInsets.all(22),
+          ),
+          "saalam".toLabel()
         ],
       )),
     );

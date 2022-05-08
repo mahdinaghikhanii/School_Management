@@ -26,6 +26,7 @@ class Button extends StatelessWidget {
         onPressed: onTap,
         child: icon != null
             ? Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   icon!,
                   const SizedBox(

@@ -14,3 +14,22 @@ extension StringExtesion on String {
         color: color,
       );
 }
+
+extension WidgetExtesion on Widget {
+  Widget get vMargin3 =>
+      Container(margin: const EdgeInsets.symmetric(vertical: 3), child: this);
+  Widget get vMargin6 =>
+      Container(margin: const EdgeInsets.symmetric(vertical: 6), child: this);
+  Widget get vMargin9 =>
+      Container(margin: const EdgeInsets.symmetric(vertical: 9), child: this);
+  Widget get hMargin3 =>
+      Container(margin: const EdgeInsets.symmetric(horizontal: 3), child: this);
+  Widget get hMargin6 =>
+      Container(margin: const EdgeInsets.symmetric(horizontal: 6), child: this);
+  Widget get hMargin9 =>
+      Container(margin: const EdgeInsets.symmetric(horizontal: 9), child: this);
+
+  Widget get margin3 => Container(margin: const EdgeInsets.all(3), child: this);
+  Widget get margin6 => Container(margin: const EdgeInsets.all(6), child: this);
+  Widget get margin9 => Container(margin: const EdgeInsets.all(9), child: this);
+}
