@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'estension.dart';
 
 enum ButtonType { save, news, delete, cancel, other }
 
-class Button extends StatelessWidget {
+class MBloc<T> {
+  final BehaviorSubject<T> _bloc = BehaviorSubject<T>();
+  Stream<T> get stream => _bloc.stream;
+}
+
+class MButton extends StatelessWidget {
   final String? title;
   final VoidCallback onTap;
   final Icon? icon;
@@ -12,7 +18,7 @@ class Button extends StatelessWidget {
   final ButtonType? type;
   final EdgeInsets? padding;
 
-  const Button(
+  const MButton(
       {this.title,
       required this.onTap,
       this.type,
@@ -88,12 +94,12 @@ class Button extends StatelessWidget {
   }
 }
 
-class Label extends StatelessWidget {
+class MLabel extends StatelessWidget {
   final String title;
   final double? fontSize;
   final Color? color;
   final bool bold;
-  const Label(
+  const MLabel(
       {required this.title,
       required this.bold,
       this.color,
@@ -111,7 +117,7 @@ class Label extends StatelessWidget {
   }
 }
 
-class Edit extends StatelessWidget {
+class MEdit extends StatelessWidget {
   final String hint;
   final Function(String)? onChange;
   final bool autoFocus;
@@ -119,7 +125,7 @@ class Edit extends StatelessWidget {
   final TextEditingController? controller;
   final bool password;
 
-  const Edit(
+  const MEdit(
       {required this.hint,
       required this.autoFocus,
       required this.password,
@@ -146,5 +152,38 @@ class Edit extends StatelessWidget {
             labelText: hint,
             labelStyle: TextStyle(color: Colors.grey.shade400, fontSize: 16)),
         obscureText: password);
+  }
+}
+
+class MTextButton extends StatelessWidget {
+  final String title;
+  final Color? color;
+  final VoidCallback ontap;
+  const MTextButton(
+      {required this.ontap, required this.title, this.color, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(onPressed: () {}, child: title.toLabel(color: color));
+  }
+}
+
+class MSwitch extends StatelessWidget {
+  final bool value;
+  final Function(bool) onChanged;
+  final String? hint;
+  const MSwitch(
+      {required this.value, required this.onChanged, this.hint, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return hint != null
+        ? Tooltip(
+            message: hint,
+            child: Switch(value: value, onChanged: onChanged),
+          )
+        : Switch(value: value, onChanged: onChanged);
   }
 }

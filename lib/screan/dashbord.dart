@@ -13,7 +13,7 @@ class Dashboard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           "hello ${context.user!.family}".toLabel(),
-          Button(
+          MButton(
             type: ButtonType.cancel,
             onTap: () {
               context.userBloc.signOut();

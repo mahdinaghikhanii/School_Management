@@ -21,7 +21,7 @@ extension ContextExtension on BuildContext {
 }
 
 extension StringExtesion on String {
-  Widget toLabel({double? fontsize, Color? color, bool bold = false}) => Label(
+  Widget toLabel({double? fontsize, Color? color, bool bold = false}) => MLabel(
         title: replaceAll("Exception: ", ''),
         bold: bold,
         fontSize: fontsize,
