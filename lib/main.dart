@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schoolmanagement/bloc/blocstate.dart';
-import 'package:schoolmanagement/bloc/userbloc.dart';
-
+import 'bloc/blocstate.dart';
+import 'bloc/userbloc.dart';
 import 'module/estension.dart';
 import 'module/widgets.dart';
 import 'screan/dashbord.dart';
@@ -67,12 +66,17 @@ class Login extends StatelessWidget {
               password: true,
               onChange: (val) => print(val)).padding9,
           Row(mainAxisSize: MainAxisSize.min, children: [
-            Button(
-              color: Colors.green,
-              title: "Register",
-              icon: const Icon(Icons.edit, size: 15),
-              onTap: () {},
-            ).margin9,
+            AbsorbPointer(
+              absorbing: state is Loading ? true : false,
+              child: Button(
+                color: Colors.green,
+                title: "Register",
+                icon: const Icon(Icons.edit, size: 15),
+                onTap: () {
+                  print('fuck');
+                },
+              ).margin9,
+            ),
             state is Loading ? const CupertinoActivityIndicator() : Container(),
             Button(
               color: Colors.blue,
