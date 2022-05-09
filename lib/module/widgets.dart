@@ -12,7 +12,7 @@ class Button extends StatelessWidget {
   final EdgeInsets? padding;
 
   const Button(
-      {required this.title,
+      {this.title,
       required this.onTap,
       this.type,
       this.color,
@@ -37,28 +37,29 @@ class Button extends StatelessWidget {
                             : type == ButtonType.news
                                 ? Colors.blue
                                 : Colors.transparent),
-            padding: MaterialStateProperty.all(padding)),
+            padding:
+                MaterialStateProperty.all(padding ?? const EdgeInsets.all(22))),
         onPressed: onTap,
-        child: icon != null
+        child: type != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                      type == ButtonType.save
-                          ? Icons.save
-                          : type == ButtonType.cancel
-                              ? Icons.cancel
-                              : type == ButtonType.delete
-                                  ? Icons.delete
-                                  : type == ButtonType.news
-                                      ? Icons.new_label
-                                      : Icons.help_center,
-                      size: 17),
+                    type == ButtonType.save
+                        ? Icons.save
+                        : type == ButtonType.cancel
+                            ? Icons.cancel
+                            : type == ButtonType.delete
+                                ? Icons.delete
+                                : type == ButtonType.news
+                                    ? Icons.new_label
+                                    : Icons.help_center,
+                  ),
                   const SizedBox(
                     width: 5,
                   ),
                   type == ButtonType.save
-                      ? "save".toLabel()
+                      ? 'save'.toLabel()
                       : type == ButtonType.cancel
                           ? "Cancel".toLabel()
                           : type == ButtonType.delete
@@ -68,10 +69,18 @@ class Button extends StatelessWidget {
                                   : '$title'.toLabel()
                 ],
               )
-            : Label(
-                title: '$title',
-                bold: false,
-              ));
+            : icon != null
+                ? Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      icon!,
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      '$title'.toLabel()
+                    ],
+                  )
+                : '$title'.toLabel());
   }
 }
 

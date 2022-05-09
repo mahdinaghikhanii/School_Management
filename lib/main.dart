@@ -51,9 +51,8 @@ class HomeViews extends StatelessWidget {
             Button(
               color: Colors.green,
               title: "Register",
-              icon: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit, size: 15),
               onTap: () {},
-              padding: const EdgeInsets.all(22),
             ).margin9,
             Button(
               color: Colors.blue,
@@ -61,8 +60,10 @@ class HomeViews extends StatelessWidget {
               onTap: () {
                 context.showForm(const Dashboard());
               },
-              icon: const Icon(Icons.vpn_key),
-              padding: const EdgeInsets.all(22),
+              icon: const Icon(
+                Icons.vpn_key,
+                size: 15,
+              ),
             ).margin9,
           ]),
         ],
