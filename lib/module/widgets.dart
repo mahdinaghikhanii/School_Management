@@ -57,7 +57,15 @@ class Button extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  '$title'.toLabel()
+                  type == ButtonType.save
+                      ? "save".toLabel()
+                      : type == ButtonType.cancel
+                          ? "Cancel".toLabel()
+                          : type == ButtonType.delete
+                              ? "Delete".toLabel()
+                              : type == ButtonType.news
+                                  ? "New".toLabel()
+                                  : '$title'.toLabel()
                 ],
               )
             : Label(
