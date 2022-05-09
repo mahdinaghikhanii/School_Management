@@ -1,10 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:schoolmanagement/bloc/blocstate.dart';
+import 'package:schoolmanagement/bloc/userbloc.dart';
+
 import 'module/estension.dart';
 import 'module/widgets.dart';
 import 'screan/dashbord.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+      providers: [BlocProvider<UserBloc>(create: (_) => UserBloc())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,20 +19,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomeViews());
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: BlocBuilder<UserBloc, BlocState>(builder: (context, state) {
+        if (state is Authenticated) return const Dashboard();
+        return Login(
+          state: state,
+        );
+      }),
+    );
   }
 }
 
-class HomeViews extends StatelessWidget {
-  const HomeViews({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  final BlocState state;
+  const Login({required this.state, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _mobile = TextEditingController();
+    TextEditingController _password = TextEditingController();
+
     return Scaffold(
         //   appBar: AppBar(),
         body: SafeArea(
@@ -38,11 +55,13 @@ class HomeViews extends StatelessWidget {
               .toLabel(bold: true, fontsize: 22, color: Colors.grey)
               .vMargin9,
           Edit(
+              controller: _mobile,
               hint: "Username",
               autoFocus: false,
               password: true,
               onChange: (val) => print(val)).padding9,
           Edit(
+              controller: _password,
               hint: "Password",
               autoFocus: false,
               password: true,
@@ -54,11 +73,14 @@ class HomeViews extends StatelessWidget {
               icon: const Icon(Icons.edit, size: 15),
               onTap: () {},
             ).margin9,
+            state is Loading ? const CupertinoActivityIndicator() : Container(),
             Button(
               color: Colors.blue,
               title: "Login",
               onTap: () {
-                context.showForm(const Dashboard());
+                context
+                    .read<UserBloc>()
+                    .authenticate(_mobile.text, _password.text);
               },
               icon: const Icon(
                 Icons.vpn_key,
@@ -66,6 +88,18 @@ class HomeViews extends StatelessWidget {
               ),
             ).margin9,
           ]),
+          state is Failed
+              ? Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: (state as Failed)
+                      .exception
+                      .toString()
+                      .toLabel(color: Colors.white, bold: true))
+              : Container()
         ],
       ),
     ).padding9.card.center));
