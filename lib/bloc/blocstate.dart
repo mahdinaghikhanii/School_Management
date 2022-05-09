@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schoolmanagement/model/user.dart';
+import '../model/user.dart';
 
 @immutable
 abstract class BlocState {}

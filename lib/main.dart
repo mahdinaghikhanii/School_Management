@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:schoolmanagement/module/widgets.dart';
-import 'package:schoolmanagement/screan/dashbord.dart';
 import 'module/estension.dart';
+import 'module/widgets.dart';
+import 'screan/dashbord.dart';
 
 void main() {
   runApp(const MyApp());

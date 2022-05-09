@@ -10,14 +10,14 @@ class User {
   String? lastlogin;
 
   User(
-      {this.id,
-      this.name,
-      this.family,
-      this.mobile,
+      {required this.id,
+      required this.name,
+      required this.family,
+      required this.mobile,
       this.email,
-      this.type,
+      required this.type,
       this.token,
-      this.active,
+      required this.active,
       this.lastlogin});
 
   User.fromJson(Map<String, dynamic> json) {
@@ -28,7 +28,7 @@ class User {
     email = json['email'];
     type = json['type'];
     token = json['token'];
-    active = json['active'];
+    active = json['active'] == 1;
     lastlogin = json['lastlogin'];
   }
 
@@ -41,8 +41,14 @@ class User {
     data['email'] = email as String;
     data['type'] = type as int;
     data['token'] = token as String;
-    data['active'] = active as bool;
+    data['active'] = active as bool ? 1 : 0;
     data['lastlogin'] = lastlogin as String;
     return data;
   }
+
+  String get typeName => type == 1
+      ? 'Admin'
+      : type == 2
+          ? 'Teacher'
+          : 'Student';
 }
