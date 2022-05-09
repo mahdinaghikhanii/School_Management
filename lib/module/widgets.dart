@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'estension.dart';
 
 enum ButtonType { save, news, delete, cancel, other }
@@ -44,29 +45,32 @@ class Button extends StatelessWidget {
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    type == ButtonType.save
-                        ? Icons.save
-                        : type == ButtonType.cancel
-                            ? Icons.cancel
-                            : type == ButtonType.delete
-                                ? Icons.delete
-                                : type == ButtonType.news
-                                    ? Icons.new_label
-                                    : Icons.help_center,
-                  ),
+                  icon ??
+                      Icon(
+                        type == ButtonType.save
+                            ? Icons.save
+                            : type == ButtonType.cancel
+                                ? Icons.cancel
+                                : type == ButtonType.delete
+                                    ? Icons.delete
+                                    : type == ButtonType.news
+                                        ? Icons.new_label
+                                        : Icons.help_center,
+                      ),
                   const SizedBox(
                     width: 5,
                   ),
-                  type == ButtonType.save
-                      ? 'save'.toLabel()
-                      : type == ButtonType.cancel
-                          ? "Cancel".toLabel()
-                          : type == ButtonType.delete
-                              ? "Delete".toLabel()
-                              : type == ButtonType.news
-                                  ? "New".toLabel()
-                                  : '$title'.toLabel()
+                  title != null
+                      ? '$title'.toLabel()
+                      : type == ButtonType.save
+                          ? 'save'.toLabel()
+                          : type == ButtonType.cancel
+                              ? "Cancel".toLabel()
+                              : type == ButtonType.delete
+                                  ? "Delete".toLabel()
+                                  : type == ButtonType.news
+                                      ? "New".toLabel()
+                                      : '$title'.toLabel()
                 ],
               )
             : icon != null
@@ -111,6 +115,7 @@ class Edit extends StatelessWidget {
   final String hint;
   final Function(String)? onChange;
   final bool autoFocus;
+  final bool notempty;
   final TextEditingController? controller;
   final bool password;
 
@@ -118,6 +123,7 @@ class Edit extends StatelessWidget {
       {required this.hint,
       required this.autoFocus,
       required this.password,
+      this.notempty = false,
       this.controller,
       this.onChange,
       Key? key})
@@ -128,6 +134,12 @@ class Edit extends StatelessWidget {
     return TextFormField(
         controller: controller,
         onChanged: onChange,
+        validator: (val) {
+          if ((val ?? '').isEmpty && notempty) {
+            return "cannot be empty";
+          }
+          return null;
+        },
         decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8), gapPadding: 20),

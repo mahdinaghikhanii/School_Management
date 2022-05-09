@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:schoolmanagement/bloc/userbloc.dart';
+import 'package:provider/provider.dart';
+import 'package:schoolmanagement/model/user.dart';
 
 import 'widgets.dart';
 
@@ -6,13 +9,20 @@ extension ContextExtension on BuildContext {
   double get width => MediaQuery.of(this).size.width;
   double get height => MediaQuery.of(this).size.height;
 
+  //Navigation next page or Screans
   void showForm(Widget child) =>
       Navigator.push(this, MaterialPageRoute(builder: (context) => child));
+
+  //SignOut
+
+  //  this part for read UserBloc and easy code and clean
+  UserBloc get userBloc => read<UserBloc>();
+  User? get user => read<UserBloc>().user;
 }
 
 extension StringExtesion on String {
   Widget toLabel({double? fontsize, Color? color, bool bold = false}) => Label(
-        title: this,
+        title: replaceAll("Exception: ", ''),
         bold: bold,
         fontSize: fontsize,
         color: color,

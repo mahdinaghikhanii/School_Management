@@ -20,5 +20,7 @@ class UserBloc extends Cubit<BlocState> {
     }
   }
 
+  void signOut() => emit(Initial());
+
   User? get user => _user;
 }

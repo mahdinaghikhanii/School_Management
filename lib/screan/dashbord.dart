@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schoolmanagement/module/estension.dart';
+import 'package:schoolmanagement/module/widgets.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -9,8 +10,18 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Column(
-        children: ["Dashbord".toLabel()],
-      )),
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          "hello ${context.user!.family}".toLabel(),
+          Button(
+            type: ButtonType.cancel,
+            onTap: () {
+              context.userBloc.signOut();
+            },
+            title: "Sign Out",
+          )
+        ],
+      )).center,
     );
   }
 }
