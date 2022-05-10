@@ -7,6 +7,7 @@ import '../bloc/blocstate.dart';
 
 TextEditingController _mobile = TextEditingController();
 TextEditingController _password = TextEditingController();
+bool _remember = false;
 
 class Login extends StatelessWidget {
   final BlocState state;
@@ -48,7 +49,11 @@ class Login extends StatelessWidget {
                 Row(
                   children: [
                     MSwitch(
-                        hint: "Remember Me", value: false, onChanged: (val) {}),
+                        hint: "Remember Me",
+                        value: _remember,
+                        onChanged: (val) {
+                          _remember = val;
+                        }),
                     "Remmember me ".toLabel(),
                     const Spacer(),
                     AbsorbPointer(
@@ -62,8 +67,8 @@ class Login extends StatelessWidget {
                     title: "Login",
                     onTap: () {
                       if (_fromKey.currentState!.validate()) {
-                        context.userBloc
-                            .authenticate(_mobile.text, _password.text);
+                        context.userBloc.authenticate(
+                            _mobile.text, _password.text, _remember);
                       }
                     },
                     icon: const Icon(
