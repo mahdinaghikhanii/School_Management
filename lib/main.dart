@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/blocstate.dart';
 import 'bloc/userbloc.dart';
-import 'screan/dashbord.dart';
+import 'screan/dashbord/dashbord.dart';
 import 'screan/login.dart';
 
 void main() {

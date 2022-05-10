@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:schoolmanagement/module/estension.dart';
 
-import 'package:schoolmanagement/module/widgets.dart';
 import '../bloc/blocstate.dart';
+import '../module/extension.dart';
+import '../module/widgets.dart';
 
 TextEditingController _mobile = TextEditingController();
 TextEditingController _password = TextEditingController();
@@ -81,23 +80,12 @@ class Login extends StatelessWidget {
                       absorbing: state is Loading ? true : false,
                       child: MTextButton(
                           ontap: () {}, title: "Forget my paasword")),
-                  state is Loading
-                      ? const CupertinoActivityIndicator()
-                      : Container(),
+                  state is Loading ? const MWaiting() : Container(),
                 ]),
               ],
             ),
             state is Failed
-                ? Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(12)),
-                    child: (state as Failed)
-                        .exception
-                        .toString()
-                        .toLabel(color: Colors.white, bold: true))
+                ? MError(exception: (state as Failed).exception)
                 : Container()
           ],
         ),

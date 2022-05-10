@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'estension.dart';
+import 'extension.dart';
 
 enum ButtonType { save, news, delete, cancel, other }
 
@@ -220,5 +221,23 @@ class MError extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.red, borderRadius: BorderRadius.circular(12)),
         child: exception.toString().toLabel(color: Colors.white, bold: true));
+  }
+}
+
+class MWaiting extends StatelessWidget {
+  const MWaiting({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const CupertinoActivityIndicator().center;
+  }
+}
+
+class MSideBarItem extends StatelessWidget {
+  const MSideBarItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
