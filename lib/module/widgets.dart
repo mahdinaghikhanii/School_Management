@@ -207,3 +207,18 @@ class MSwitch extends StatelessWidget {
         });
   }
 }
+
+class MError extends StatelessWidget {
+  final Exception exception;
+  const MError({required this.exception, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+            color: Colors.red, borderRadius: BorderRadius.circular(12)),
+        child: exception.toString().toLabel(color: Colors.white, bold: true));
+  }
+}
