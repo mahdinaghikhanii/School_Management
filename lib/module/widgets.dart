@@ -5,9 +5,11 @@ import 'estension.dart';
 
 enum ButtonType { save, news, delete, cancel, other }
 
-class MBloc<T> {
-  final BehaviorSubject<T> _bloc = BehaviorSubject<T>();
-  Stream<T> get stream => _bloc.stream;
+class MBloc<t> {
+  final BehaviorSubject<t> _bloc = BehaviorSubject<t>();
+  Stream<t> get stream => _bloc.stream;
+  t get value => _bloc.value;
+  void setValue(t val) => _bloc.add(val);
 }
 
 class MButton extends StatelessWidget {
@@ -179,11 +181,29 @@ class MSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return hint != null
-        ? Tooltip(
-            message: hint,
-            child: Switch(value: value, onChanged: onChanged),
-          )
-        : Switch(value: value, onChanged: onChanged);
+    MBloc<bool> _value = MBloc<bool>()..setValue(value);
+    return StreamBuilder<bool>(
+        stream: _value.stream,
+        builder: (_, snap) {
+          if (snap.hasData) {
+            return hint != null
+                ? Tooltip(
+                    message: hint!,
+                    child: Switch(
+                        value: snap.data!,
+                        onChanged: (val) {
+                          onChanged(val);
+                          _value.setValue(val);
+                        }),
+                  )
+                : Switch(
+                    value: snap.data!,
+                    onChanged: (val) {
+                      onChanged(val);
+                      _value.setValue(val);
+                    });
+          }
+          return Container();
+        });
   }
 }

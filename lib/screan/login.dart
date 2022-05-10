@@ -47,7 +47,8 @@ class Login extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Switch(value: false, onChanged: (val) {}),
+                    MSwitch(
+                        hint: "Remember Me", value: false, onChanged: (val) {}),
                     "Remmember me ".toLabel(),
                     const Spacer(),
                     AbsorbPointer(
