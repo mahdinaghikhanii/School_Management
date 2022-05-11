@@ -9,6 +9,12 @@ extension ContextExtension on BuildContext {
   double get width => MediaQuery.of(this).size.width;
   double get height => MediaQuery.of(this).size.height;
 
+  double widthResponse(double min, double max, double perc) =>
+      MediaQuery.of(this).size.width * perc < min
+          ? min
+          : MediaQuery.of(this).size.width * perc > max
+              ? max
+              : MediaQuery.of(this).size.width * perc;
   //Navigation next page or Screans
   void showForm(Widget child) =>
       Navigator.push(this, MaterialPageRoute(builder: (context) => child));

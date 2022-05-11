@@ -234,10 +234,39 @@ class MWaiting extends StatelessWidget {
 }
 
 class MSideBarItem extends StatelessWidget {
-  const MSideBarItem({Key? key}) : super(key: key);
+  final String title;
+  final IconData icon;
+  final int value;
+  final bool selected;
+  final VoidCallback onPreassed;
+  const MSideBarItem(
+      {required this.icon,
+      required this.onPreassed,
+      this.selected = false,
+      this.value = 0,
+      required this.title,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListTile(
+      selectedTileColor: Colors.grey.shade200,
+      selected: selected,
+      title: title.toLabel(color: Colors.grey.shade500, fontsize: 13),
+      leading: Icon(
+        icon,
+        size: 15,
+        color: Colors.grey.shade500,
+      ),
+      trailing: value > 0
+          ? CircleAvatar(
+              backgroundColor: Colors.pink,
+              radius: 10,
+              child: '$value'.toLabel(fontsize: 10),
+            )
+          : null,
+      onTap: onPreassed,
+    );
   }
 }
