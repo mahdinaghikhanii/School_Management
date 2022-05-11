@@ -74,8 +74,8 @@ class DashboardContent extends StatelessWidget {
                           border: Border(
                             bottom: BorderSide(
                                 color: (snapshot.data ?? 0) == 1
-                                    ? Colors.green.shade200
-                                    : Colors.grey.shade200,
+                                    ? Colors.green
+                                    : Colors.grey,
                                 width: 1),
                           ),
                         ),
@@ -83,8 +83,8 @@ class DashboardContent extends StatelessWidget {
                         child: "Student"
                             .toLabel(
                               color: (snapshot.data ?? 0) == 1
-                                  ? Colors.green.shade200
-                                  : Colors.grey.shade200,
+                                  ? Colors.green
+                                  : Colors.grey,
                             )
                             .center),
                   ),
@@ -96,8 +96,8 @@ class DashboardContent extends StatelessWidget {
                           border: Border(
                             bottom: BorderSide(
                                 color: (snapshot.data ?? 0) == 2
-                                    ? Colors.green.shade200
-                                    : Colors.grey.shade200,
+                                    ? Colors.green
+                                    : Colors.grey,
                                 width: 1),
                           ),
                         ),
@@ -105,8 +105,8 @@ class DashboardContent extends StatelessWidget {
                         child: "Student"
                             .toLabel(
                               color: (snapshot.data ?? 0) == 2
-                                  ? Colors.green.shade200
-                                  : Colors.grey.shade200,
+                                  ? Colors.green
+                                  : Colors.grey,
                             )
                             .center),
                   ),
@@ -118,29 +118,28 @@ class DashboardContent extends StatelessWidget {
                           border: Border(
                             bottom: BorderSide(
                                 color: (snapshot.data ?? 0) == 3
-                                    ? Colors.green.shade200
-                                    : Colors.grey.shade200,
+                                    ? Colors.green
+                                    : Colors.grey,
                                 width: 1),
                           ),
                         ),
                         padding: const EdgeInsets.only(bottom: 15),
                         child: "Class".toLabel(
                           color: (snapshot.data ?? 0) == 3
-                              ? Colors.green.shade200
-                              : Colors.grey.shade200,
+                              ? Colors.green
+                              : Colors.grey,
                         )).center,
                   ),
                   Container(
                       width: 100,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         border: Border(
-                          bottom:
-                              BorderSide(color: Colors.grey.shade200, width: 1),
+                          bottom: BorderSide(color: Colors.grey, width: 1),
                         ),
                       ),
                       padding: const EdgeInsets.only(bottom: 15),
                       child: "".toLabel(
-                        color: Colors.grey.shade200,
+                        color: Colors.grey,
                       )).expanded,
                 ],
               )
