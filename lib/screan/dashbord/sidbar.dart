@@ -32,8 +32,8 @@ class SidBar extends StatelessWidget {
               value: 2,
               selected: selectIndex == 2,
               icon: Icons.message,
-              onPreassed: () => onChanged(1)),
-          MSideBarItem(
+              onPreassed: () => onChanged(2)),
+          /*   MSideBarItem(
               title: "Students",
               selected: selectIndex == 3,
               icon: Icons.people,
@@ -45,7 +45,7 @@ class SidBar extends StatelessWidget {
               onPreassed: () => onChanged(4)),
           const SizedBox(
             height: 50,
-          ),
+          ),*/
           MSideBarItem(
               title: "Settings",
               selected: selectIndex == 5,

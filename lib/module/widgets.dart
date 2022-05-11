@@ -125,6 +125,7 @@ class MEdit extends StatelessWidget {
   final Function(String)? onChange;
   final bool autoFocus;
   final bool notempty;
+
   final TextEditingController? controller;
   final bool password;
 

@@ -27,11 +27,69 @@ class Dashboard extends StatelessWidget {
                 selectIndex: _menu.value,
               ),
               Container(
-                color: Colors.blue.shade100,
+                child: snapshot.data == 1
+                    ? const DashboardContent()
+                    : "Other".toLabel().center,
               ).expanded,
-              UserInfo()
+              const UserInfo(),
             ],
           )));
         });
+  }
+}
+
+class DashboardContent extends StatelessWidget {
+  const DashboardContent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+            width: 300,
+            child: MEdit(
+              hint: "Search...",
+              autoFocus: false,
+              password: false,
+            )).padding9,
+        const SizedBox(
+          height: 35,
+        ),
+        Row(
+          children: [
+            Container(
+                width: 100,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.green, width: 1),
+                  ),
+                ),
+                padding: const EdgeInsets.only(bottom: 15),
+                child: "Student".toLabel(color: Colors.green).center),
+            Container(
+                width: 100,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.grey.shade200, width: 1),
+                  ),
+                ),
+                padding: const EdgeInsets.only(bottom: 15),
+                child: "Student".toLabel(color: Colors.grey).center),
+            Container(
+                    width: 100,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom:
+                            BorderSide(color: Colors.grey.shade200, width: 1),
+                      ),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: "Class".toLabel(color: Colors.grey))
+                .expanded,
+          ],
+        )
+      ],
+    ).padding9.margin9;
   }
 }
