@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:schoolmanagement/module/theme.dart';
-import 'package:schoolmanagement/module/widgets.dart';
 
+import '../../module/extension.dart';
+import '../../module/widgets.dart';
 import 'sidbar.dart';
 import 'usereinfo.dart';
-import 'package:schoolmanagement/module/extension.dart';
 
 MBloc<int> _menu = MBloc<int>()..setValue(1);
 MBloc<int> _dashbordmenu = MBloc<int>()..setValue(1);
@@ -66,20 +64,7 @@ class DashboardContent extends StatelessWidget {
                         autoFocus: false,
                         password: false,
                       )).padding9,
-                  Row(
-                    children: [
-                      context.isDark
-                          ? const FaIcon(FontAwesomeIcons.moon)
-                          : Container(),
-                      MSwitch(
-                          value: context.isDark,
-                          onChanged: (val) => context.themeBloc
-                              .setTheme(val ? AppTheme.dark : AppTheme.light)),
-                      context.isDark
-                          ? Container()
-                          : const FaIcon(FontAwesomeIcons.sun),
-                    ],
-                  )
+                  const MDarkLightSwitch(),
                 ],
               ),
               const SizedBox(
