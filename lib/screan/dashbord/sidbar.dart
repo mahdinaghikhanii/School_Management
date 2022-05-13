@@ -54,6 +54,5 @@ class SidBar extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

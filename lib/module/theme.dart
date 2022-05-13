@@ -14,7 +14,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
       brightness: Brightness.dark,
       primarySwatch: Colors.blueGrey,
       primaryColor: Colors.blueGrey,
-      scaffoldBackgroundColor: Colors.lightBlueAccent,
+      scaffoldBackgroundColor: Colors.grey[800],
       bottomAppBarColor: Colors.grey[100],
       textTheme: const TextTheme(headline1: TextStyle(color: Colors.white70)))
 };

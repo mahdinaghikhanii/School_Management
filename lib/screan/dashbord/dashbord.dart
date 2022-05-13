@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schoolmanagement/module/theme.dart';
 import 'package:schoolmanagement/module/widgets.dart';
 
 import 'sidbar.dart';
@@ -7,7 +8,7 @@ import 'package:schoolmanagement/module/extension.dart';
 
 MBloc<int> _menu = MBloc<int>()..setValue(1);
 MBloc<int> _dashbordmenu = MBloc<int>()..setValue(1);
-MBloc<int> _dashhover = MBloc<int>()..setValue(1);
+//MBloc<int> _dashhover = MBloc<int>()..setValue(1);
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -54,13 +55,21 @@ class DashboardContent extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                  width: 300,
-                  child: MEdit(
-                    hint: "Search...",
-                    autoFocus: false,
-                    password: false,
-                  )).padding9,
+              Row(
+                children: [
+                  const SizedBox(
+                      width: 300,
+                      child: MEdit(
+                        hint: "Search...",
+                        autoFocus: false,
+                        password: false,
+                      )).padding9,
+                  MSwitch(
+                      value: context.isDark,
+                      onChanged: (val) => context.themeBloc
+                          .setTheme(val ? AppTheme.dark : AppTheme.light))
+                ],
+              ),
               const SizedBox(
                 height: 35,
               ),

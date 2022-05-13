@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schoolmanagement/bloc/themebloc.dart';
 import 'package:schoolmanagement/bloc/userbloc.dart';
 import 'package:provider/provider.dart';
 import 'package:schoolmanagement/model/user.dart';
@@ -24,6 +25,8 @@ extension ContextExtension on BuildContext {
   //  this part for read UserBloc and easy code and clean
   UserBloc get userBloc => read<UserBloc>();
   User? get user => read<UserBloc>().user;
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
+  ThemeBloc get themeBloc => read<ThemeBloc>();
 }
 
 extension StringExtesion on String {
