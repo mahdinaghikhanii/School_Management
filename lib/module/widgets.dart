@@ -252,7 +252,7 @@ class MSideBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      selectedTileColor: Colors.grey.shade200,
+      selectedTileColor: context.bottomAppBarColor,
       selected: selected,
       title: title.toLabel(color: Colors.grey.shade500, fontsize: 13),
       leading: Icon(

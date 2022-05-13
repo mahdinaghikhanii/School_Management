@@ -27,6 +27,7 @@ extension ContextExtension on BuildContext {
   User? get user => read<UserBloc>().user;
   bool get isDark => Theme.of(this).brightness == Brightness.dark;
   ThemeBloc get themeBloc => read<ThemeBloc>();
+  Color get bottomAppBarColor => Theme.of(this).bottomAppBarColor;
 }
 
 extension StringExtesion on String {

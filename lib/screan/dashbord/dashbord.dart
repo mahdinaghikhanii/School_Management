@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:schoolmanagement/module/theme.dart';
 import 'package:schoolmanagement/module/widgets.dart';
 
@@ -56,6 +57,7 @@ class DashboardContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(
                       width: 300,
@@ -64,10 +66,20 @@ class DashboardContent extends StatelessWidget {
                         autoFocus: false,
                         password: false,
                       )).padding9,
-                  MSwitch(
-                      value: context.isDark,
-                      onChanged: (val) => context.themeBloc
-                          .setTheme(val ? AppTheme.dark : AppTheme.light))
+                  Row(
+                    children: [
+                      context.isDark
+                          ? const FaIcon(FontAwesomeIcons.moon)
+                          : Container(),
+                      MSwitch(
+                          value: context.isDark,
+                          onChanged: (val) => context.themeBloc
+                              .setTheme(val ? AppTheme.dark : AppTheme.light)),
+                      context.isDark
+                          ? Container()
+                          : const FaIcon(FontAwesomeIcons.sun),
+                    ],
+                  )
                 ],
               ),
               const SizedBox(

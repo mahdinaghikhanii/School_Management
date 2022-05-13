@@ -43,9 +43,10 @@ class SidBar extends StatelessWidget {
               icon: Icons.class_,
               selected: selectIndex == 4,
               onPreassed: () => onChanged(4)),
+              */
           const SizedBox(
-            height: 50,
-          ),*/
+            height: 60,
+          ),
           MSideBarItem(
               title: "Settings",
               selected: selectIndex == 5,
