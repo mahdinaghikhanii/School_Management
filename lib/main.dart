@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:schoolmanagement/bloc/themebloc.dart';
-import 'package:schoolmanagement/module/theme.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'bloc/blocstate.dart';
+import 'bloc/themebloc.dart';
 import 'bloc/userbloc.dart';
+import 'module/theme.dart';
 import 'screan/dashbord/dashbord.dart';
 import 'screan/login.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<UserBloc>(create: (_) => UserBloc()),
     BlocProvider<ThemeBloc>(create: (_) => ThemeBloc())
