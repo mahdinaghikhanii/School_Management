@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:schoolmanagement/bloc/themebloc.dart';
-import 'package:schoolmanagement/bloc/userbloc.dart';
 import 'package:provider/provider.dart';
-import 'package:schoolmanagement/model/user.dart';
 
+import '../bloc/themebloc.dart';
+import '../bloc/userbloc.dart';
+import '../model/user.dart';
 import 'widgets.dart';
 
 extension ContextExtension on BuildContext {
