@@ -68,7 +68,7 @@ CREATE TABLE Sch.TBLevel(
     ID TINYINT  PRIMARY KEY,
     [Name] NVARCHAR(30),
 )
-if OBJECT_ID('Sch.TBClass') is NULL
+if OBJECT_ID('Sch.TB Class') is NULL
 CREATE TABLE Sch.TBClass(
     ID SMALLINT PRIMARY KEY ,
     TermID SMALLINT FOREIGN KEY REFERENCES Sch.TbTerm(ID),
@@ -88,15 +88,24 @@ CREATE TABLE Sch.TBDStudent(
     STID int  FOREIGN key REFERENCES Sch.TBStudent(ID),
     ClcID SMALLINT FOREIGN KEY REFERENCES Sch.TBClass(ID),
     RegDate CHAR(10),
-
+    Payment FLOAT,
+    EUserId SMALLINT FOREIGN KEY REFERENCES Sch.TBUser(ID),
+    EDate CHAR(10),
+    primary KEY(STID, ClasID),
 )
 GO
 IF OBJECT_ID('Sch.TBSAbsent') IS NULL
 CREATE TABLE Sch.TBSAbsent(
-    STID  int FOREIGN KEY REFERENCES Sch.TBStudent(ID),
+    STID  int ,
+    ClsID SMALLINT,
     Radif  TINYINT,
     [Date] CHAR(10),
-    PRIMARY KEY(STID,Radif),
+    PRIMARY KEY(STID,ClsID,Radif),
+    FOREIGN KEY (STID ,ClsID) REFERENCES Sch.TBStudent(STID,ClsID)
 )
 GO
+
+
+
+CREATE PROCEDURE Sch.PrcAuthenticate @IP N
 
